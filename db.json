@@ -1,5 +1,21 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "b6a5",
+      "Username": "test",
+      "UserEmail": "test@email.com",
+      "UserFavorites": ["af49", "5ea6"],
+      "Password": "password"
+    },
+    {
+      "id": "4aca",
+      "Username": "User",
+      "UserEmail": "user@email.com",
+      "Password": "password",
+      "UserListings": [],
+      "UserFavorites": []
+    }
+  ],
   "listings": [
     {
       "ListingTitle": "Equinox Cabin",
