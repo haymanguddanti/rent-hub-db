@@ -1,5 +1,5 @@
-// See https://github.com/typicode/json-server#module
 const jsonServer = require("json-server");
+const cors = require('cors'); // Import the cors package
 
 const server = jsonServer.create();
 
@@ -11,12 +11,11 @@ const data = fs.readFileSync(filePath, "utf-8");
 const db = JSON.parse(data);
 const router = jsonServer.router(db);
 
-// Comment out to allow write operations
-// const router = jsonServer.router('db.json')
-
 const middlewares = jsonServer.defaults();
 
-server.use(middlewares);
+// Enable CORS for all origins or for a specific domain
+server.use(cors());  // This will allow all origins by default
+
 // Add this before server.use(router)
 server.use(
   jsonServer.rewriter({
@@ -24,7 +23,10 @@ server.use(
     "/blog/:resource/:id/show": "/:resource/:id",
   })
 );
+
+server.use(middlewares);  // Use default json-server middlewares (logging, static, etc.)
 server.use(router);
+
 server.listen(3000, () => {
   console.log("JSON Server is running");
 });
